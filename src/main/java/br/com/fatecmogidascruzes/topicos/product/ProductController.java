@@ -3,6 +3,7 @@ package br.com.fatecmogidascruzes.topicos.product;
 import br.com.fatecmogidascruzes.topicos.product.useCase.CreateProduct;
 import br.com.fatecmogidascruzes.topicos.product.useCase.FindAllProduct;
 import br.com.fatecmogidascruzes.topicos.product.useCase.FindProductById;
+import br.com.fatecmogidascruzes.topicos.product.useCase.FindProductByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,11 +35,7 @@ public class ProductController {
 
     @GetMapping("/name")
     public Product getByName(@RequestParam String name){
-        return productRepository.findAll()
-                .stream()
-                .filter(product -> product.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(new Product());
+        return new FindProductByName(productRepository).execute(name);
     }
 
     @DeleteMapping("/{id}")
