@@ -42,16 +42,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Product product){
-        Optional<Product> productOptional = productRepository.findById(id);
-
-        productOptional.ifPresent(prod -> {
-            Product productDatabase = productOptional.get();
-
-            productRepository.save(new Product(productDatabase.getId(),
-                    product.getName(),product.getDescription(),
-                    product.getUnitPrice(), product.getQuantity(),
-                    product.getPerishable()));
-        });
+        new UpdateProduct(productRepository).execute(product,id);
 
     }
 }
