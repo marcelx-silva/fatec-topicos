@@ -2,6 +2,7 @@ package br.com.fatecmogidascruzes.topicos.product;
 
 import br.com.fatecmogidascruzes.topicos.product.useCase.CreateProduct;
 import br.com.fatecmogidascruzes.topicos.product.useCase.FindAllProduct;
+import br.com.fatecmogidascruzes.topicos.product.useCase.FindProductById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getById(@PathVariable Long id){
-        return productRepository.findById(id)
-                .orElse(new Product());
+        return new FindProductById(productRepository).execute(id);
     }
 
     @GetMapping("/name")
