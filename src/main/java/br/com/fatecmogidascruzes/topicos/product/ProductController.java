@@ -1,9 +1,6 @@
 package br.com.fatecmogidascruzes.topicos.product;
 
-import br.com.fatecmogidascruzes.topicos.product.useCase.CreateProduct;
-import br.com.fatecmogidascruzes.topicos.product.useCase.FindAllProduct;
-import br.com.fatecmogidascruzes.topicos.product.useCase.FindProductById;
-import br.com.fatecmogidascruzes.topicos.product.useCase.FindProductByName;
+import br.com.fatecmogidascruzes.topicos.product.useCase.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +37,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id){
-        Optional<Product> productOptional = productRepository.findById(id);
-
-        productOptional.ifPresent(product -> {
-            productRepository.delete(product);
-        });
+        new DeleteProductById(productRepository).execute(id);
     }
 
     @PutMapping("/{id}")
