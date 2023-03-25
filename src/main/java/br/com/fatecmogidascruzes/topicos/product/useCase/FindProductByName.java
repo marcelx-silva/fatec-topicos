@@ -1,6 +1,6 @@
 package br.com.fatecmogidascruzes.topicos.product.useCase;
 
-import br.com.fatecmogidascruzes.topicos.product.Product;
+import br.com.fatecmogidascruzes.topicos.product.ProductPM;
 import br.com.fatecmogidascruzes.topicos.product.ProductRepository;
 
 public class FindProductByName {
@@ -10,11 +10,12 @@ public class FindProductByName {
         this.productRepository = productRepository;
     }
 
-    public Product execute(String name){
+    public ProductPM execute(String name){
         return productRepository.findAll()
                 .stream()
                 .filter(product -> product.getName().equalsIgnoreCase(name))
                 .findFirst()
+                .map(ProductPM::new)
                 .orElse(null);
     }
 }

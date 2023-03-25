@@ -1,9 +1,7 @@
 package br.com.fatecmogidascruzes.topicos.product.useCase;
 
-import br.com.fatecmogidascruzes.topicos.product.Product;
+import br.com.fatecmogidascruzes.topicos.product.ProductPM;
 import br.com.fatecmogidascruzes.topicos.product.ProductRepository;
-
-import java.util.Optional;
 
 public class FindProductById {
     private ProductRepository productRepository;
@@ -12,7 +10,7 @@ public class FindProductById {
         this.productRepository = productRepository;
     }
 
-    public Product execute(Long id){
-        return productRepository.findById(id).orElse(null);
+    public ProductPM execute(Long id){
+        return productRepository.findById(id).map(ProductPM::new).orElse(null);
     }
 }

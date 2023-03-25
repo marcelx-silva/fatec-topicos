@@ -21,17 +21,17 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAll(){
+    public List<ProductPM> getAll(){
         return new FindAllProduct(productRepository).execute();
     }
 
     @GetMapping("/{id}")
-    public Product getById(@PathVariable Long id){
+    public ProductPM getById(@PathVariable Long id){
         return new FindProductById(productRepository).execute(id);
     }
 
     @GetMapping("/name")
-    public Product getByName(@RequestParam String name){
+    public ProductPM getByName(@RequestParam String name){
         return new FindProductByName(productRepository).execute(name);
     }
 
