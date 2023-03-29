@@ -3,18 +3,18 @@ package br.com.fatecmogidascruzes.topicos.customer.usecase;
 import br.com.fatecmogidascruzes.topicos.customer.CustomerPM;
 import br.com.fatecmogidascruzes.topicos.customer.CustomerRepository;
 
-import java.util.Optional;
+import java.util.List;
 
-public class FindCustomer {
+public class ListCustomer {
 
     private CustomerRepository customerRepository;
 
-    public FindCustomer(CustomerRepository customerRepository) {
+    public ListCustomer(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public Optional<CustomerPM> execute(String itin) {
-        return customerRepository.findByItin(itin).map(CustomerPM::new);
+    public List<CustomerPM> execute() {
+        return customerRepository.findAll().stream().map(CustomerPM::new).toList();
     }
 
 }
