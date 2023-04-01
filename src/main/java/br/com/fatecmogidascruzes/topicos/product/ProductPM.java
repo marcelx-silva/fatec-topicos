@@ -17,7 +17,15 @@ public class ProductPM {
         setDescription(product.getDescription());
         setUnitPrice(product.getUnitPrice().toPlainString());
         setQuantity(product.getQuantity().toString());
+        setShouldShowQuantityAlert(isQuantityLow(product));
         setPerishable(product.getPerishable());
+    }
+
+    private Boolean isQuantityLow(Product product){
+        if (product.getQuantity() <= 30)
+            return true;
+
+        return false;
     }
 
     public String getId() {
