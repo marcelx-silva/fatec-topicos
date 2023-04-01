@@ -8,6 +8,7 @@ public class ProductPM {
     private String description;
     private String unitPrice;
     private String quantity;
+    private Boolean shouldShowQuantityAlert;
     private Boolean perishable;
 
     public ProductPM(Product product){
@@ -65,5 +66,13 @@ public class ProductPM {
 
     public void setPerishable(Boolean perishable) {
         this.perishable = perishable;
+    }
+
+    public Boolean getShouldShowQuantityAlert() {
+        return shouldShowQuantityAlert;
+    }
+
+    public void setShouldShowQuantityAlert(Boolean shouldShowQuantityAlert) {
+        this.shouldShowQuantityAlert = shouldShowQuantityAlert;
     }
 }
